@@ -1,24 +1,14 @@
-<html>
-    <head>
-        <title>Yummy recipes blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Yummy recipes blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <strong>Hello,dear. Welcome to my blog of cooking! Hope, we'll find good recipes for you and leave your  own delicious.</strong>
-            <p>published: 18.11.2020, 12:14</p>
-            <h2><a href="">Chocolate covered strawberries</a></h2>
-            <p>Line a large baking sheet with parchment paper. Rinse strawberries and pat dry with paper towels.
-                In a small microwave-safe bowl, combine chocolate chips and coconut oil and microwave in 30-second intervals, stirring in between, until completely melted.
-                Dip strawberries in chocolate and place on prepared baking sheet.
-                Refrigerate until chocolate is set, about 30 minutes.</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                 <p>published: {{ post.published_date }}</p>
+             </div>
+             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+             <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
+                
